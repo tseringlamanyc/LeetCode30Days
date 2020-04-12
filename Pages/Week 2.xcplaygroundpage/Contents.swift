@@ -45,3 +45,43 @@ class Solution {
     }
 }
 
+/*
+ BACKSPACE STRING
+ Given two strings S and T, return if they are equal when both are typed into empty text editors. # means a backspace character.
+ Input: S = "ab#c", T = "ad#c"
+ Output: true
+ Explanation: Both S and T become "ac".
+ */
+
+func backspaceCompare(_ S: String, _ T: String) -> Bool {
+    
+    var sArray = Array(S)
+    var tArray = Array(T)
+    
+    let sCounter = 0
+    let tCounter = 0
+    
+    for _ in sCounter..<sArray.count {
+        if let char = sArray.firstIndex(of: "#") {
+            sArray.remove(at: char)
+            if char - 1 >= 0 {
+                sArray.remove(at: char - 1)
+            }
+        }
+    }
+    
+    for _ in tCounter..<tArray.count {
+           if let char = tArray.firstIndex(of: "#") {
+               tArray.remove(at: char)
+               if char - 1 >= 0 {
+                   tArray.remove(at: char - 1)
+               }
+           }
+       }
+    
+    print(sArray.description, tArray.description)
+    
+    return sArray.description == tArray.description
+}
+
+backspaceCompare("","xywrrmu#p")
