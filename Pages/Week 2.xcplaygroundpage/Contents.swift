@@ -71,13 +71,13 @@ func backspaceCompare(_ S: String, _ T: String) -> Bool {
     }
     
     for _ in tCounter..<tArray.count {
-           if let char = tArray.firstIndex(of: "#") {
-               tArray.remove(at: char)
-               if char - 1 >= 0 {
-                   tArray.remove(at: char - 1)
-               }
-           }
-       }
+        if let char = tArray.firstIndex(of: "#") {
+            tArray.remove(at: char)
+            if char - 1 >= 0 {
+                tArray.remove(at: char - 1)
+            }
+        }
+    }
     
     print(sArray.description, tArray.description)
     
@@ -85,3 +85,55 @@ func backspaceCompare(_ S: String, _ T: String) -> Bool {
 }
 
 backspaceCompare("","xywrrmu#p")
+
+// Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+class MinStack {
+    init() {
+        
+    }
+    var arrOfInts = [Int]()
+    var minNum = [Int]()
+    
+    func push(_ x: Int) {
+        arrOfInts.append(x)
+        
+        if minNum.count == 0 {
+            minNum.append(x)
+        } else {
+            if let minNumber = minNum.last, let lastNum = arrOfInts.last {
+                if lastNum <= minNumber {
+                    minNum.append(lastNum)
+                }
+            }
+        }
+    }
+    
+    func pop() -> Int {
+        
+        guard !arrOfInts.isEmpty else {
+            return 0
+        }
+        
+        let removedNum = arrOfInts.popLast()
+        
+        if let numRemoved = removedNum, let min1 = minNum.last {
+            if numRemoved == min1 {
+                minNum.removeLast()
+            }
+        }
+        return removedNum ?? 1000
+    }
+    
+    func top() -> Int {
+        guard !arrOfInts.isEmpty else {
+            return 0
+        }
+        return arrOfInts.last ?? 1000
+    }
+    
+    func getMin() -> Int {
+        return minNum.last ?? 1000
+    }
+}
+
