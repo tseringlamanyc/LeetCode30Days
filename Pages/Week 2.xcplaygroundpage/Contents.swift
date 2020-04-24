@@ -137,3 +137,18 @@ class MinStack {
     }
 }
 
+// Last Stone Weight
+
+func lastStoneWeight(stones: [Int]) -> Int {
+    
+    guard stones.count > 1 else {return stones.first!}
+    
+    var sortedStones = stones.sorted()
+    
+    let largestStone = sortedStones.removeLast()
+    let secondLargest = sortedStones.removeLast()
+    
+    sortedStones.append(largestStone - secondLargest)
+    return lastStoneWeight(stones: sortedStones)
+    
+}
