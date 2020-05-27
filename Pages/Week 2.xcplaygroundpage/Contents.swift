@@ -152,3 +152,17 @@ func lastStoneWeight(stones: [Int]) -> Int {
     return lastStoneWeight(stones: sortedStones)
     
 }
+
+// Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1.
+
+func findMaxLength(_ nums: [Int]) -> Int {
+    
+    let result = 0
+    return result
+}
+
+// Perform String Shifts
+
+
+
+
